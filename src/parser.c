@@ -108,3 +108,28 @@ cJSON *json_parse_file(const char *filename)
     free(content);
     return root;
 }
+
+cJSON *json_parse_string(const char *content){
+    const char *error_position = NULL;
+
+    if (content == NULL){
+        return NULL;
+    }
+
+    cJSON *root = cJSON_ParseWithOpts(
+        content,
+        &error_position,
+        1
+    );
+
+    if(root == NULL){
+        if (error_position != NULL){
+            fprintf(stderr,"Invalid JSON near: %.40s\n",error_position);
+        }
+        else{
+            fprintf(stderr,"Invalid JSON.\n");
+        }
+    }
+
+    return root;
+}

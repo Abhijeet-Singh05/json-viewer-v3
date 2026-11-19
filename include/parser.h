@@ -7,4 +7,6 @@
    The caller owns the returned tree and must call cJSON_Delete(). */
 cJSON *json_parse_file(const char *filename);
 
+cJSON *json_parse_string(const char *content);
+
 #endif

@@ -1,9 +1,9 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Wpedantic -std=c11 -Iinclude
-LDLIBS = -lcjson
+LDLIBS = -lcjson -lcurl
 
 TARGET = jsonview
-SOURCES = src/main.c src/parser.c src/viewer.c src/validator.c
+SOURCES = src/main.c src/parser.c src/viewer.c src/validator.c src/fetcher.c
 OBJECTS = $(SOURCES:.c=.o)
 
 .PHONY: all clean run

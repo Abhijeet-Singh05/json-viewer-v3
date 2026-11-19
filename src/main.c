@@ -1,6 +1,7 @@
 #include "parser.h"
 #include "validator.h"
 #include "viewer.h"
+#include "fetcher.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +12,7 @@ static void show_help(const char *program)
     printf("\nJSON VIEWER V3\n\n");
     printf("Usage:\n");
     printf("  %s <file.json>                  Display JSON as a tree\n", program);
+    printf("  %s --url <URL>  Fetch and display JSON from a URL\n", program);
     printf("  %s --validate <file.json>       Validate JSON syntax\n", program);
     printf("  %s --stats <file.json>          Show JSON statistics\n", program);
     printf("  %s --find <key> <file.json>     Find an object key\n", program);
@@ -37,6 +39,28 @@ int main(int argc, char *argv[])
     cJSON *root;
 
     json_viewer_init_colors();
+
+    if (argc == 3 && strcmp(argv[1], "--url") == 0){
+        char *json_text = fetch_json_from_url(argv[2]);
+
+        if (json_text == NULL) {
+            return EXIT_FAILURE;
+        }
+
+        root = json_parse_string(json_text);
+
+        free(json_text);
+
+        if(root == NULL){
+            return EXIT_FAILURE;
+        }
+
+        json_print_tree(root,"ROOT",0);
+
+        cJSON_Delete(root);
+
+        return EXIT_SUCCESS;
+    }
 
     if (argc == 2 && strcmp(argv[1], "--help") == 0)
     {
