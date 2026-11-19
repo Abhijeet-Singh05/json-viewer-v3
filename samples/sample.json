@@ -1,0 +1,15 @@
+{
+  "name": "Abhi",
+  "age": 22,
+  "isStudent": true,
+  "marks": [85, 90, 95],
+  "skills": ["C", "Python", "Linux"],
+  "address": {
+    "city": "Delhi",
+    "country": "India"
+  },
+  "education": {
+    "degree": "BSc IT",
+    "year": 2026
+  }
+}
