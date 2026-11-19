@@ -16,7 +16,7 @@ A command-line JSON viewer written in C. It uses the cJSON library to parse JSON
 
 ```bash
 sudo apt update
-sudo apt install build-essential libcjson-dev
+sudo apt install build-essential libcjson-dev  libcurl4-openssl-dev
 ```
 
 ## Build
@@ -40,12 +40,14 @@ gcc -Wall -Wextra -Wpedantic -std=c11 -Iinclude \
 ```bash
 ./jsonview samples/sample.json
 ./jsonview --validate samples/sample.json
+./jsonview --url url
 ./jsonview --stats samples/sample.json
 ./jsonview --find name samples/sample.json
 ./jsonview --filter delhi samples/sample.json
 ./jsonview --get address.city samples/sample.json
 ./jsonview --get 'skills[1]' samples/sample.json
 ./jsonview --get '$.education.year' samples/sample.json
+./jsonview --download url destination
 ./jsonview --help
 ```
 

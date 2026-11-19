@@ -12,4 +12,6 @@
  */
 char *fetch_json_from_url(const char *url);
 
+int save_json_from_url(const char *url, const char *filename);
+
 #endif

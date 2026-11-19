@@ -62,6 +62,11 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
     }
 
+    if (argc == 4 && strcmp(argv[1], "--download") == 0)
+        {
+            return save_json_from_url(argv[2], argv[3]) == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
+        }   
+
     if (argc == 2 && strcmp(argv[1], "--help") == 0)
     {
         show_help(argv[0]);

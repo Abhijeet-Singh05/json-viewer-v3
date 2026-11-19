@@ -107,3 +107,38 @@ char *fetch_json_from_url(const char *url)
     curl_global_cleanup();
     return buffer.data;
 }
+
+int save_json_from_url(const char *url, const char *filename)
+{
+    char *json_data;
+    FILE *file;
+
+    json_data = fetch_json_from_url(url);
+
+    if (json_data == NULL)
+        return 1;
+
+    file = fopen(filename, "wb");
+
+    if (file == NULL)
+    {
+        perror("Unable to create file");
+        free(json_data);
+        return 1;
+    }
+
+    if (fputs(json_data, file) == EOF)
+    {
+        perror("Unable to write JSON data");
+        fclose(file);
+        free(json_data);
+        return 1;
+    }
+
+    fclose(file);
+    free(json_data);
+
+    printf("JSON successfully saved to: %s\n", filename);
+
+    return 0;
+}

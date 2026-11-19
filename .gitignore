@@ -1,0 +1,13 @@
+# Compiled files
+*.o
+jsonview
+
+# Downloaded JSON files
+downloads/*.json
+
+# Temporary files
+*.tmp
+*.log
+
+# IDE
+.vscode/
